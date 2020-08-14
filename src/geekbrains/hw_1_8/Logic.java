@@ -1,10 +1,12 @@
 package geekbrains.hw_1_8;
 
+import javax.swing.*;
 import java.util.Random;
 
-public class Logic {
+public class Logic extends JFrame {
     static int SIZE;
     static int DOTS_TO_WIN;
+
 
     static final char DOT_X = 'X';
     static final char DOT_O = 'O';
@@ -22,10 +24,12 @@ public class Logic {
         printMap();
         if (checkWinLines(DOT_X)) {
             System.out.println("Ты победил! ");
+            JOptionPane.showMessageDialog(null, "Ты победил!", "Winner", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (isFull()) {
             System.out.println("Ничья!");
+            JOptionPane.showMessageDialog(null, "Ничья!", "Winner", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
@@ -33,16 +37,17 @@ public class Logic {
         printMap();
         if (checkWinLines(DOT_O)) {
             System.out.println("Компьютер победил! ");
+            JOptionPane.showMessageDialog(null, "Компьютер победил!", "Winner", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
         if (isFull()) {
             System.out.println("Ничья!");
+            JOptionPane.showMessageDialog(null, "Ничья!", "Winner", JOptionPane.INFORMATION_MESSAGE);
             return;
         }
 
         isFinished = false;
     }
-
 
     public static void initMap() {
         map = new char[SIZE][SIZE];

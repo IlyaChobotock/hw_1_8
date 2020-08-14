@@ -16,11 +16,10 @@ public class BattleField extends JPanel {
     private int cellWidth;
     private int cellHeight;
 
-
     public BattleField(geekbrains.hw_1_8.GameWindow gameWindow) {
         this.gameWindow = gameWindow;
 
-        setBackground(Color.ORANGE);
+        setBackground(Color.LIGHT_GRAY);
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -34,14 +33,13 @@ public class BattleField extends JPanel {
         int cellX = e.getX() / cellWidth;
         int cellY = e.getY() / cellHeight;
 
+        repaint();
+
         if(!geekbrains.hw_1_8.Logic.isFinished){
             geekbrains.hw_1_8.Logic.humanTurn(cellX, cellY);
         }
 
-        repaint();
-
     }
-
 
     public void startNewGame(int mode, int fieldSize, int winningLength) {
         this.mode = mode;
@@ -93,12 +91,14 @@ public class BattleField extends JPanel {
 
     private void drawX(Graphics g, int x, int y) {
         ((Graphics2D) g).setStroke(new BasicStroke(5));
-        g.setColor(Color.RED);
-        g.drawLine(cellWidth * x, cellHeight * y, cellWidth * (x + 1), cellHeight * (y + 1));
+        g.setColor(Color.DARK_GRAY);
+        g.drawLine(cellWidth * x + 10, cellHeight * y + 10, cellWidth * (x + 1) - 10, cellHeight * (y + 1) - 10);
+        g.drawLine(cellWidth * x + 10, cellHeight * (y + 1) - 10, cellWidth * (x + 1) - 10, cellHeight * y + 10);
     }
 
     private void drawO(Graphics g, int x, int y) {
+        ((Graphics2D) g).setStroke(new BasicStroke(5));
         g.setColor(Color.BLUE);
-        g.drawLine(cellWidth * x, cellHeight * y, cellWidth * (x + 1), cellHeight * (y + 1));
+        g.drawOval(cellWidth * x + 10, cellHeight * y + 10, cellWidth - 20, cellHeight - 20);
     }
 }
